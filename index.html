@@ -1,23 +1,935 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+  
+    <!-- Schema.org Structured Data for Rich Snippets (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "아우디 A6 보험료 비교견적 서비스",
+      "image": "https://yourdomain.com/images/audi-a6.jpg",
+      "description": "아우디 A6 45 TFSI 프리미엄 콰트로, 40 TDI 컴포트 등 주요 모델의 2026년 연령별 보험료 평균 분석 및 다이렉트 가입 할인 가이드.",
+      "brand": {
+        "@type": "Brand",
+        "name": "아우디 (Audi)"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "KRW",
+        "lowPrice": "550000",
+        "highPrice": "2450000",
+        "offerCount": "30",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "아우디 A6 다이렉트 보험료 비교",
+            "price": "650000",
+            "priceCurrency": "KRW",
+            "url": "https://yourdomain.com/audi-a6-insurance#calculator-section"
+          }
+        ]
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "아우디 A6 보험료 평균 금액은 얼마인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "아우디 A6의 연간 평균 보험료는 가입자의 연령과 운전 경력에 따라 다릅니다. 만 30세 이상 무사고 가입자의 평균 예상 비용은 약 80만 원에서 130만 원 선입니다. 반면 만 26세 이하 신규 가입의 경우 자차 보장 범위와 높은 차량 가격 요인으로 인해 180만 원에서 250만 원 이상의 견적이 책정되기도 합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "아우디 A6 보험료를 절약하는 가장 좋은 방법은 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "다이렉트 보험 비교 전문 업체를 통해 가입 순위를 확인하고, 주행거리 마일리지 할인, TMAP 안전운전 UBI 특약, 부부 한정 등 운전자 범위를 좁히는 설정을 적용하는 것이 가장 효과적입니다."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Fonts (Noto Sans KR) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+      :root {
+        --primary-indigo: #1e1b4b;
+        --secondary-blue: #2563eb;
+        --soft-slate: #f1f5f9;
+        --border-color: #cbd5e1;
+        --accent-peach: #f97316;
+        --text-dark: #0f172a;
+        --text-muted: #475569;
+        --light-teal: #f0fdfa;
+        --accent-teal: #0d9488;
+      }
+
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.9;
+        background-color: #f8fafc;
+        color: var(--text-dark);
+      }
+
+      header {
+        background: linear-gradient(135deg, var(--primary-indigo) 0%, #312e81 100%);
+        color: white;
+        padding: 3.5rem 1.5rem;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      header h1 {
+        font-size: 2.6rem;
+        font-weight: 900;
+        margin-bottom: 1rem;
+        letter-spacing: -0.05em;
+        line-height: 1.3;
+      }
+
+      header p {
+        font-size: 1.25rem;
+        font-weight: 300;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 0 auto 2rem auto;
+      }
+
+      nav {
+        background-color: rgba(255, 255, 255, 0.07);
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        display: inline-block;
+        max-width: 90%;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      nav a {
+        color: #e2e8f0;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #fca5a5;
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 3rem auto;
+        padding: 0 1.5rem;
+      }
+
+      article {
+        background-color: white;
+        padding: 3.5rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+        border: 1px solid #f1f5f9;
+      }
+
+      section {
+        margin-bottom: 4rem;
+      }
+
+      h2 {
+        color: var(--primary-indigo);
+        font-size: 2.1rem;
+        font-weight: 700;
+        border-left: 6px solid var(--secondary-blue);
+        padding-left: 1.2rem;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.03em;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        color: var(--secondary-blue);
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        color: var(--text-muted);
+        text-align: justify;
+      }
+
+      strong {
+        color: var(--text-dark);
+        font-weight: 700;
+      }
+
+      ul {
+        margin-bottom: 2rem;
+        padding-left: 0;
+        list-style: none;
+      }
+
+      ul li {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+        position: relative;
+        color: var(--text-muted);
+      }
+
+      ul li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.7rem;
+        width: 6px;
+        height: 6px;
+        background-color: var(--accent-peach);
+        border-radius: 50%;
+      }
+
+      .keyword-tags {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background-color: var(--soft-slate);
+        border-radius: 12px;
+      }
+
+      .keyword-tags-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--primary-indigo);
+        margin-bottom: 0.8rem;
+      }
+
+      .keyword-tags-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .keyword-tags a {
+        background-color: white;
+        color: var(--secondary-blue);
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        text-decoration: none;
+        border: 1px solid #e2e8f0;
+        transition: all 0.2s ease;
+      }
+
+      .keyword-tags a:hover {
+        background-color: var(--secondary-blue);
+        color: white;
+        border-color: var(--secondary-blue);
+      }
+
+      .chart-container {
+        background-color: var(--soft-slate);
+        padding: 2rem;
+        border-radius: 16px;
+        margin: 2.5rem 0;
+      }
+
+      .chart-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--primary-indigo);
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .chart-bar-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .chart-row {
+        display: flex;
+        align-items: center;
+      }
+
+      .chart-label {
+        width: 150px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text-dark);
+      }
+
+      .chart-track {
+        flex-grow: 1;
+        background-color: #e2e8f0;
+        height: 24px;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .chart-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--secondary-blue) 0%, #3b82f6 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        color: white;
+        font-size: 0.8rem;
+        font-weight: 700;
+        transition: width 1s ease-in-out;
+      }
+
+      .chart-fill.orange {
+        background: linear-gradient(90deg, var(--accent-peach) 0%, #f97316 100%);
+      }
+
+      .chart-fill.teal {
+        background: linear-gradient(90deg, var(--accent-teal) 0%, #14b8a6 100%);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 2.5rem 0;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        border: 1px solid var(--border-color);
+      }
+
+      th, td {
+        padding: 1.2rem;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+
+      th {
+        background-color: var(--primary-indigo);
+        color: white;
+        font-weight: 700;
+      }
+
+      td {
+        background-color: white;
+        border-bottom: 1px solid #f1f5f9;
+        color: var(--text-muted);
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      tr:nth-child(even) td {
+        background-color: #fafbfd;
+      }
+
+      .interactive-calculator {
+        background-color: var(--light-teal);
+        border: 2px solid #ccfbf1;
+        border-radius: 20px;
+        padding: 3rem;
+        margin: 3.5rem 0;
+      }
+
+      .calculator-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+
+      .calculator-header h3 {
+        color: var(--accent-teal);
+        font-size: 1.8rem;
+        margin: 0 0 0.5rem 0;
+      }
+
+      .calculator-header p {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        text-align: center;
+        margin: 0;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        article {
+          padding: 1.5rem;
+        }
+        h2 {
+          font-size: 1.6rem;
+        }
+        header h1 {
+          font-size: 1.8rem;
+        }
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group.full-width {
+        grid-column: span 2;
+      }
+
+      @media (max-width: 768px) {
+        .form-group.full-width {
+          grid-column: span 1;
+        }
+      }
+
+      .form-group label {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--primary-indigo);
+        margin-bottom: 0.5rem;
+      }
+
+      .form-group input, 
+      .form-group select, 
+      .form-group textarea {
+        padding: 0.8rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 0.95rem;
+        background-color: white;
+        color: var(--text-dark);
+        transition: border-color 0.2s ease;
+      }
+
+      .form-group input:focus, 
+      .form-group select:focus, 
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--accent-teal);
+        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+      }
+
+      .checkbox-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+        margin-top: 0.5rem;
+      }
+
+      .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .checkbox-item input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--accent-teal);
+      }
+
+      .checkbox-item label {
+        margin: 0;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-weight: 400;
+        cursor: pointer;
+      }
+
+      .btn-submit {
+        background-color: var(--accent-teal);
+        color: white;
+        font-weight: 700;
+        font-size: 1.1rem;
+        padding: 1.2rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 1.5rem;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+      }
+
+      .btn-submit:hover {
+        background-color: #0f766e;
+      }
+
+      .btn-submit:active {
+        transform: scale(0.99);
+      }
+
+      .accordion {
+        margin: 2.5rem 0;
+      }
+
+      .accordion-item {
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .accordion-button {
+        width: 100%;
+        background: none;
+        border: none;
+        text-align: left;
+        padding: 1.2rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary-indigo);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.2s ease;
+      }
+
+      .accordion-button:hover {
+        background-color: var(--soft-slate);
+      }
+
+      .accordion-content {
+        padding: 0 1.2rem 1.5rem 1.2rem;
+        color: var(--text-muted);
+        display: none;
+      }
+
+      .accordion-item.active .accordion-content {
+        display: block;
+      }
+
+      .external-resources {
+        background-color: #f8fafc;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 2rem;
+        margin-top: 4rem;
+      }
+
+      .external-resources h4 {
+        margin-top: 0;
+        color: var(--primary-indigo);
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
+
+      .external-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .external-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .external-link {
+        color: var(--secondary-blue);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: inline-block;
+        transition: color 0.2s ease;
+      }
+
+      .external-link:hover {
+        color: var(--primary-indigo);
+        text-decoration: underline;
+      }
+
+      footer {
+        text-align: center;
+        padding: 3rem 1.5rem;
+        background-color: var(--primary-indigo);
+        color: #94a3b8;
+        font-size: 0.85rem;
+        margin-top: 4rem;
+      }
+
+      footer p {
+        color: #94a3b8;
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>아우디 A6 보험료 평균 비교 및 상세 견적 가이드</h1>
+        <p>2026년 최신 기준에 따른 아우디 A6 모델별 가격 차이와 다이렉트 할인 혜택 분석</p>
+        <nav>
+            <ul>
+                <li><a href="#intro-section">A6 보험료 실태</a></li>
+                <li><a href="#model-premiums">차종별 세부 비교</a></li>
+                <li><a href="#saving-methods">다이렉트 절약법</a></li>
+                <li><a href="#calculator-section">상세 모의 계산</a></li>
+                <li><a href="#community-reviews">실제 오너 후기</a></li>
+                <li><a href="#faq-section">자주 묻는 질문</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <article>
+            <section id="intro-section">
+                <h2>아우디 A6 보험료, 평균 가격은 얼마이고 왜 차이가 날까요?</h2>
+                <p>수입 중형 세단의 대표 주자인 아우디 A6를 보유하고 있거나 신규 가입을 준비 중인 오너분들에게 가장 큰 관심사는 매년 지출해야 하는 고정 비용인 <strong>아우디 A6 보험료</strong> 수준입니다. 실제 네이버나 구글 같은 포털에서 아우디 A6 보험료 내돈내산 후기나 수입차 보험 저렴한곳 추천 정보를 검색해 보면 가입자 개개인의 요건에 따라 청구되는 가격 편차가 상당히 크다는 것을 발견할 수 있습니다.</p>
+                <p>아우디 A6의 연간 평균 보험료 예상 금액은 만 30세 이상 무사고 운전자 기준 약 85만 원에서 140만 원 수준입니다. 그러나 동일 차량이라 할지라도 주행 환경, 사고 이력, 자차 담보 여부 그리고 엔진 트림에 따라 실질 금액은 크게 달라집니다. 특히 가계 자금 관리를 고민하는 젊은 연령층이나 신규 가입 운전자라면 수입차 특유의 비싼 자차 수리비 부담으로 인하여 연간 200만 원을 초과하는 견적을 받아보는 경우도 부지기수입니다.</p>
+                <p>아우디 A6는 독일 3사 프리미엄 세단 중에서도 전방 카메라, 차선 유지 장치 등 첨단 주행 보조 사양의 장점이 확실하여 상대적으로 안전 등급이 양호하게 평가되는 모델이지만, 범퍼나 헤드라이트 등 주요 순정 부품 가격의 장단점이 분명하기 때문에 가입 전에 면밀히 확인하는 과정이 필수적입니다. 최근에는 챗지피티(ChatGPT)나 제미나이(Gemini) 같은 인공지능(AI) 검색엔진을 통하여 각 다이렉트 손해보험사의 견적 순위를 실시간 비교하는 흐름이 대세로 자리 잡고 있습니다.</p>
+
+                <div class="keyword-tags">
+                    <div class="keyword-tags-title">함께 많이 찾는 검색 카테고리</div>
+                    <div class="keyword-tags-container">
+                        <a href="#calculator-section">아우디 A6 보험료 평균</a>
+                        <a href="#model-premiums">아우디 A6 45 TFSI 보험료</a>
+                        <a href="#model-premiums">아우디 A6 40 TDI 보험료</a>
+                        <a href="#saving-methods">다이렉트 싼곳 비교</a>
+                        <a href="#community-reviews">보배드림 아우디 유지비</a>
+                        <a href="#calculator-section">수입차 다이렉트 할인</a>
+                        <a href="#faq-section">신규 운전자 경력 인정</a>
+                        <a href="#calculator-section">A6 콰트로 자차 보험금</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="model-premiums">
+                <h2>아우디 A6 세부 모델 30종 비교 및 등급별 특징</h2>
+                <p>아우디 A6는 세대를 거치며 가솔린, 디젤, 플러그인 하이브리드(PHEV) 등 다채로운 트림으로 세분화되었습니다. 수입 자동차는 차량 자체의 신차 출고 가격뿐 아니라 보험개발원이 매년 평가하는 차량모델등급에 따라 자차 담보 요율이 매겨지므로 모델별 차이점을 파악해야 합니다. 아래의 표와 상세 안내는 아우디 A6의 대표적인 30가지 세부 트림 모델들을 일목요연하게 나열하고, 30대 중반 가입자 기준의 연간 예상 납입 비용 수준을 분석한 지표입니다.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>순번</th>
+                            <th>세부 모델명</th>
+                            <th>파워트레인 분류</th>
+                            <th>모델 등급 구분</th>
+                            <th>예상 보험료 범위 (연간/원)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>아우디 A6 45 TFSI 프리미엄 콰트로 (C8)</td><td>가솔린 싱글터보</td><td>우수 (15등급)</td><td>850,000 - 1,150,000</td></tr>
+                        <tr><td>2</td><td>아우디 A6 45 TFSI 컴포트 (C8)</td><td>가솔린 싱글터보</td><td>우수 (15등급)</td><td>820,000 - 1,100,000</td></tr>
+                        <tr><td>3</td><td>아우디 A6 40 TDI 프리미엄 (C8)</td><td>싱글디젤 마일드H</td><td>보통 (13등급)</td><td>900,000 - 1,250,000</td></tr>
+                        <tr><td>4</td><td>아우디 A6 40 TDI 컴포트 (C8)</td><td>싱글디젤 마일드H</td><td>보통 (13등급)</td><td>870,000 - 1,200,000</td></tr>
+                        <tr><td>5</td><td>아우디 A6 45 TDI 프리미엄 콰트로 (C8)</td><td>디젤 V6 트윈터보</td><td>다소 주의 (11등급)</td><td>1,100,000 - 1,450,000</td></tr>
+                        <tr><td>6</td><td>아우디 A6 50 TDI 프리미엄 콰트로 (C8)</td><td>디젤 V6 트윈터보</td><td>주의 (10등급)</td><td>1,250,000 - 1,600,000</td></tr>
+                        <tr><td>7</td><td>아우디 A6 50 TFSI e 프리미엄 콰트로 (C8)</td><td>가솔린 플러그인하이브리드</td><td>우수 (14등급)</td><td>950,000 - 1,300,000</td></tr>
+                        <tr><td>8</td><td>아우디 S6 TFSI 고성능 모델 (C8)</td><td>가솔린 고성능 트윈터보</td><td>고위험 (7등급)</td><td>1,600,000 - 2,100,000</td></tr>
+                        <tr><td>9</td><td>아우디 RS6 아반트 퍼포먼스 (C8)</td><td>초고성능 가솔린 V8</td><td>고위험 (5등급)</td><td>2,300,000 - 3,200,000</td></tr>
+                        <tr><td>10</td><td>아우디 A6 C8 프리미엄 라인 S라인 익스테리어</td><td>가솔린 싱글터보</td><td>우수 (15등급)</td><td>880,000 - 1,180,000</td></tr>
+                        <tr><td>11</td><td>아우디 A6 C7 35 TDI 프리미엄</td><td>싱글터보 디젤</td><td>보통 (12등급)</td><td>750,000 - 980,000</td></tr>
+                        <tr><td>12</td><td>아우디 A6 C7 40 TFSI 컴포트</td><td>가솔린 싱글터보</td><td>보통 (13등급)</td><td>780,000 - 1,020,000</td></tr>
+                        <tr><td>13</td><td>아우디 A6 C7 50 TFSI 콰트로</td><td>가솔린 V6 슈퍼차저</td><td>다소 주의 (11등급)</td><td>950,000 - 1,350,000</td></tr>
+                        <tr><td>14</td><td>아우디 A6 C6 3.0 TDI 콰트로 (구형)</td><td>디젤 V6 싱글터보</td><td>연식 노후화 적용</td><td>650,000 - 850,000</td></tr>
+                        <tr><td>15</td><td>아우디 A6 C6 2.4 가솔린 클래식</td><td>가솔린 자연흡기</td><td>연식 노후화 적용</td><td>600,000 - 780,000</td></tr>
+                        <tr><td>16</td><td>아우디 A6 C5 2.7 터보 콰트로 (올드카)</td><td>가솔린 V6 바이터보</td><td>올드카 특별 요율</td><td>800,000 - 1,100,000</td></tr>
+                        <tr><td>17</td><td>아우디 A6 40 TFSI S라인 익스테리어 패키지</td><td>가솔린 싱글터보</td><td>우수 (14등급)</td><td>860,000 - 1,140,000</td></tr>
+                        <tr><td>18</td><td>아우디 A6 45 TFSI 콰트로 프리미엄 S라인</td><td>가솔린 싱글터보</td><td>우수 (15등급)</td><td>890,000 - 1,190,000</td></tr>
+                        <tr><td>19</td><td>아우디 A6 55 TFSI e 콰트로 프리미엄 플러그인</td><td>가솔린 플러그인하이브리드</td><td>우수 (14등급)</td><td>980,000 - 1,350,000</td></tr>
+                        <tr><td>20</td><td>아우디 A6 3.0 TFSI 콰트로 다이내믹 (C7)</td><td>가솔린 V6 슈퍼차저</td><td>보통 (12등급)</td><td>880,000 - 1,150,000</td></tr>
+                        <tr><td>21</td><td>아우디 A6 2.0 TDI Comfort (C7)</td><td>싱글터보 디젤</td><td>보통 (12등급)</td><td>720,000 - 950,000</td></tr>
+                        <tr><td>22</td><td>아우디 A6 2.0 TDI Premium (C7)</td><td>싱글터보 디젤</td><td>보통 (12등급)</td><td>740,000 - 970,000</td></tr>
+                        <tr><td>23</td><td>아우디 A6 30 TDI Comfort (C7)</td><td>싱글터보 디젤</td><td>보통 (12등급)</td><td>710,000 - 930,000</td></tr>
+                        <tr><td>24</td><td>아우디 A6 35 TDI 콰트로 프리미엄 (C7)</td><td>디젤 싱글터보</td><td>보통 (12등급)</td><td>760,000 - 990,000</td></tr>
+                        <tr><td>25</td><td>아우디 A6 40 TDI 콰트로 프리미엄 S트로닉</td><td>싱글디젤 마일드H</td><td>보통 (13등급)</td><td>920,000 - 1,280,000</td></tr>
+                        <tr><td>26</td><td>아우디 A6 40 TFSI 컴포트 S트로닉 (C8)</td><td>가솔린 싱글터보</td><td>우수 (14등급)</td><td>830,000 - 1,120,000</td></tr>
+                        <tr><td>27</td><td>아우디 A6 45 TFSI 프리미엄 L모델 (중국형)</td><td>가솔린 싱글터보</td><td>특수 직수입 요율</td><td>1,200,000 - 1,700,000</td></tr>
+                        <tr><td>28</td><td>아우디 A6 3.0 TFSI C7 후기형</td><td>가솔린 V6 싱글터보</td><td>보통 (12등급)</td><td>910,000 - 1,240,000</td></tr>
+                        <tr><td>29</td><td>아우디 A6 3.2 FSI 콰트로 C6</td><td>가솔린 V6 자연흡기</td><td>연식 노후화 적용</td><td>680,000 - 890,000</td></tr>
+                        <tr><td>30</td><td>아우디 A6 2.0 TFSI 싱글터보 C7</td><td>가솔린 싱글터보</td><td>보통 (13등급)</td><td>760,000 - 1,010,000</td></tr>
+                    </tbody>
+                </table>
+
+                <p>위 표의 금액 범위에서 볼 수 있듯이 아우디 A6 45 TFSI 프리미엄이나 아우디 A6 40 TDI 프리미엄 컴포트처럼 대중적인 최신 C8 8세대 모델의 경우, 비교적 우수한 모델 안전등급을 부여받아 자차 가격 부담이 상쇄되는 장점이 있습니다. 반대로 아우디 S6나 초고성능 RS6 아반트 제품군의 경우 고가의 엔진 파츠 및 스포츠 주행 성향으로 인해 사고 위험성이 높게 측정되어 자차 할증 요율의 단점이 극명하게 두드러집니다.</p>
+            </section>
+
+            <section id="visual-chart-section">
+                <div class="chart-container">
+                    <div class="chart-title">연령대별 아우디 A6 평균 연간 보험료 예상 격차 (만 30세 무사고 기준 대비)</div>
+                    <div class="chart-bar-group">
+                        <div class="chart-row">
+                            <div class="chart-label">만 21세 이하 신규</div>
+                            <div class="chart-track">
+                                <div class="chart-fill" style="width: 100%;">약 2,450,000원</div>
+                            </div>
+                        </div>
+                        <div class="chart-row">
+                            <div class="chart-label">만 26세 이상</div>
+                            <div class="chart-track">
+                                <div class="chart-fill orange" style="width: 65%;">약 1,600,000원</div>
+                            </div>
+                        </div>
+                        <div class="chart-row">
+                            <div class="chart-label">만 30세 이상 무사고</div>
+                            <div class="chart-track">
+                                <div class="chart-fill teal" style="width: 38%;">약 950,000원</div>
+                            </div>
+                        </div>
+                        <div class="chart-row">
+                            <div class="chart-label">만 43세 이상 부부</div>
+                            <div class="chart-track">
+                                <div class="chart-fill teal" style="width: 32%;">약 800,000원</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>연령별 보험 요율의 차이점은 자녀 할인, 기혼 유무, 군 운전 경력 여부에 따라 한층 더 심화됩니다. 연령 한정을 더 좁고 제한적인 범위(예: 기혼 부부 한정, 가족 한정 1인 지정)로 설정할수록 위험도 분산 효과가 적용되어 최종 청구 금액이 내려갑니다.</p>
+            </section>
+
+            <section id="saving-methods">
+                <h2>아우디 A6 보험료 아끼는 법과 다이렉트 혜택 가이드</h2>
+                <p>연간 백만 원을 넘나드는 고정 비용 부담을 낮추기 위한 최선의 전략은 오프라인 설계사를 통하기보다 온라인으로 직접 계약하는 다이렉트 보험 싼곳 또는 전문 비교 견적 업체를 활용하는 것입니다. 오프라인 대비 다이렉트 채널은 평균 15%에서 19.8% 수준의 원천 가격 세이브 효과를 냅니다.</p>
+
+                <h3>1. 주요 할인 특약 및 조건별 혜택 목록</h3>
+                <ul>
+                    <li><strong>마일리지 주행거리 할인 특약:</strong> 출퇴근 거리가 짧거나 세컨드카로 주말에만 운행하는 경우, 연간 주행거리가 2,000km에서 15,000km 이하 구간일 때 최소 5%에서 최고 35%에 이르는 환급 금액을 돌려받을 수 있습니다.</li>
+                    <li><strong>안전운전 습관 UBI 특약:</strong> 티맵이나 카카오내비 같은 내비게이션 플랫폼과 연동하여 안전 점수가 75점 또는 80점 이상으로 유지될 경우, 메이저 손해보험사들로부터 추가 5%에서 12%의 할인을 받게 됩니다.</li>
+                    <li><strong>첨단 안전장치 장착 할인:</strong> 아우디 A6 45 TFSI S라인이나 컴포트 트림 등에 기본으로 포함된 차선이탈방지보조, 어댑티브 크루즈 컨트롤, 전방 충돌 경고 장치 덕분에 추가 안전 요율 감면이 적용됩니다.</li>
+                    <li><strong>자녀 동승 할인 특약:</strong> 태아 상태의 아이가 있거나 만 6세 이하의 자녀가 있는 가입자는 평소 방어 운전을 지향한다는 손해율 통계를 근거로 추가 할인이 제공됩니다.</li>
+                </ul>
+
+                <h3>2. 신규 가입 혜택과 사은품 현금지원 활용법</h3>
+                <p>처음 외제차 보험에 가입하는 시기에는 각 다이렉트 보험사들이 전개하는 신규 프로모션과 제휴 혜택을 반드시 살펴보아야 합니다. 네이버페이, 카카오페이 등 주요 간편결제 시스템과 연동하여 가입 비교 순위를 알아보고 진행할 시, 제휴 주유 상품권이나 모바일 백화점 상품권 지급 등의 혜택을 챙길 수 있습니다. 일부 다이렉트 제휴 전문 채널에서는 현금지원 혹은 주유 지원금 형태의 사은품을 연계한 이벤트를 비정기적으로 전개하므로 기회를 놓치지 않는 것을 추천합니다.</p>
+            </section>
+
+            <section id="calculator-section">
+                <div class="interactive-calculator">
+                    <div class="calculator-header">
+                        <h3>아우디 A6 다이렉트 보험료 간이 모의 계산기</h3>
+                        <p>아래 세부 설정 정보를 입력하여 본인 조건에 근접한 맞춤형 비용 시뮬레이션을 진행해 보세요.</p>
+                    </div>
+                    <form id="calcForm" onsubmit="event.preventDefault(); calculatePremium();">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="audi_model">보유 아우디 A6 트림 구분</label>
+                                <select id="audi_model" required>
+                                    <option value="1.0">아우디 A6 45 TFSI 프리미엄 콰트로</option>
+                                    <option value="0.95">아우디 A6 45 TFSI 컴포트</option>
+                                    <option value="1.05">아우디 A6 40 TDI 프리미엄</option>
+                                    <option value="1.02">아우디 A6 40 TDI 컴포트</option>
+                                    <option value="1.2">아우디 A6 45 TDI 프리미엄 콰트로</option>
+                                    <option value="1.3">아우디 A6 50 TDI 프리미엄 콰트로</option>
+                                    <option value="1.1">아우디 A6 50 TFSI e 하이브리드</option>
+                                    <option value="1.8">아우디 S6 / RS6 고성능 라인업</option>
+                                    <option value="0.85">아우디 A6 C7 이전 세대 중고 모델</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="driver_age_select">최저 운전자 연령 기준</label>
+                                <select id="driver_age_select" required>
+                                    <option value="2.5">만 21세 이하 신규</option>
+                                    <option value="1.8">만 24세 이하</option>
+                                    <option value="1.4">만 26세 이상</option>
+                                    <option value="1.0">만 30세 이상</option>
+                                    <option value="0.85">만 43세 이상</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="driver_range_select">운전자 탑승 범위 설정</label>
+                                <select id="driver_range_select" required>
+                                    <option value="1.0">피보험자 1인 전용</option>
+                                    <option value="1.15">부부 공동 지정</option>
+                                    <option value="1.4">가족 공동 한정 (형제 제외)</option>
+                                    <option value="1.8">누구나 자유롭게 운전</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="accident_history">과거 3개년 사고 이력 여부</label>
+                                <select id="accident_history" required>
+                                    <option value="0.9">무사고 연속 3년 이상</option>
+                                    <option value="1.0">무사고 1년 내외</option>
+                                    <option value="1.3">대물 혹은 자차 접수 1회</option>
+                                    <option value="1.7">사고 다발 및 할증 요율 대상자</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="mileage_discount">연간 주행거리 목표량</label>
+                                <select id="mileage_discount" required>
+                                    <option value="0.75">연간 3,000km 미만 (최대 환급)</option>
+                                    <option value="0.85">연간 5,000km 내외 (기본 환급)</option>
+                                    <option value="0.95">연간 10,000km 내외</option>
+                                    <option value="1.0">연간 15,000km 초과 (해당 없음)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tmap_score">티맵 안전운전 점수 수준</label>
+                                <select id="tmap_score" required>
+                                    <option value="0.9">80점 이상 (할인 대상)</option>
+                                    <option value="0.95">70점 - 79점 사이</option>
+                                    <option value="1.0">70점 미만 또는 비사용</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>차량에 설치된 부가 안전 장비 (중복 체크)</label>
+                                <div class="checkbox-grid">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="blackbox" checked>
+                                        <label for="blackbox">빌트인/설치형 블랙박스 운용</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="adas" checked>
+                                        <label for="adas">차선이탈방지 및 전방충돌방지 탑재</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="child">
+                                        <label for="child">만 6세 이하 자녀 혹은 태아 동승 특약</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="copay">
+                                        <label for="copay">자차 수리비 자기부담금 최대 설정 (50만 원)</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="username">예약자 성함</label>
+                                <input type="text" id="username" placeholder="성함을 입력하세요">
+                            </div>
+                            <div class="form-group">
+                                <label for="userphone">휴대전화번호</label>
+                                <input type="text" id="userphone" placeholder="010-XXXX-XXXX">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="user_memo">그 외 요청사항 (비교 희망 보험사 등)</label>
+                                <textarea id="user_memo" rows="3" placeholder="예: 네이버페이 혜택 가입 순위가 궁금합니다. 보배드림에서 본 자차 단독사고 대책 등"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit">아우디 A6 예상 보험료 연간 환산치 보기</button>
+                    </form>
+                    <div id="calcResult" style="margin-top: 2rem; padding: 1.5rem; background-color: white; border-radius: 10px; border: 1px solid var(--border-color); display: none; text-align: center;">
+                        <span style="font-weight: 700; font-size: 1.2rem; color: var(--primary-indigo); display: block; margin-bottom: 0.5rem;">본인 맞춤식 시뮬레이션 예상 결과</span>
+                        <div style="font-size: 1.8rem; font-weight: 900; color: var(--accent-peach);" id="calculatedValue">0원</div>
+                        <span style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-top: 0.5rem;">위 산정 금액은 단순 가상의 모의 시뮬레이션이며, 실제 연계 보험사의 나이, 경력 및 심사 조건에 따라 오차가 있을 수 있습니다.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="community-reviews">
+                <h2>디시, 보배드림, 펨코 유저들이 말하는 아우디 A6 유지비 진실</h2>
+                <p>자동차 매니아들과 일반 오너들이 대거 포진해 있는 대표적 커뮤니티인 디시인사이드 차갤(자동차 갤러리), 보배드림 수입차 게시판, 그리고 펨코(에펨코리아) 자동차 카테고리 등에서 언급되는 <strong>아우디 A6 보험료 내돈내산 가입 팁</strong>은 언제나 뜨거운 논쟁거리입니다.</p>
+                <p>보배드림 유저들의 중론을 모아보면 아우디 A6는 아우디 프리센스 시스템 등으로 인해 전방 추돌 사고 경감률이 우수한 편이지만, 단독 사고로 인해 서스펜션 암이나 알루미늄 외판넬이 찌그러졌을 때 청구되는 공임과 부품 단가가 높아서 무조건 자차 담보를 최대치로 가입해야 한다는 조언이 지배적입니다. 자차 담보를 축소하거나 제외했다가 뒤늦게 대형 수리비 지출을 겪고 후회하는 일이 잦다는 지적입니다.</p>
+                <p>디시인사이드나 에펨코리아의 알뜰 오너들 사이에서는 매해 11월과 12월에 집중되는 가입 이벤트 프로모션을 타깃으로 삼아야 신규 가입 기준 3만 원 상당의 주유 상품권 사은품이나 제휴 현금지원을 확실히 챙길 수 있다는 가성비 팁이 활발하게 유포됩니다. 연식 변경에 따라 수리비 잔존가치가 낮아지는 구형 C7 세대 아우디 A6 모델은 다이렉트 자차 가입 비율을 조금 높게 잡더라도 총보험료 부담이 상대적으로 저렴해지는 이점도 함께 언급되고 있습니다.</p>
+            </section>
+
+            <section id="faq-section">
+                <h2>자주 묻는 질문 (FAQ)</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-button" onclick="toggleAccordion(this)">
+                            Q1. 만 20대 신규 운전자가 아우디 A6를 타면 보험료가 아주 많이 비싼가요?
+                        </button>
+                        <div class="accordion-content">
+                            그렇습니다. 수입 중형 세단인 아우디 A6는 기본 차량 가액이 높고 만 20대 연령대는 사고 확률 요율이 높게 잡혀있습니다. 자차 포함 신규 가입 시 첫해 예상 비용은 대략 200만 원 중반대에서 최대 300만 원 이상까지 책정될 수 있으므로, 부모님 명의의 가입 조건 아래 운전자 지정 1인 혹은 가족 한정 범위 특약으로 경력을 먼저 승계하여 낮추는 방법을 강력히 권장합니다.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-button" onclick="toggleAccordion(this)">
+                            Q2. 자차 보장 범위의 자기부담금 설정은 얼마가 유리할까요?
+                        </button>
+                        <div class="accordion-content">
+                            수입차는 경미한 접촉에도 수리비 백만 원 단위를 가뿐히 돌파합니다. 자기부담금 비율은 일반적으로 수리비의 20%를 적용하며, 최소 20만 원에서 최대 50만 원 사이의 구간을 가장 많이 설정합니다. 자기부담금의 상한선을 최대로 높여놓으면 납부할 월 기본 비용 자체가 내려가므로 평소 주행 거리가 짧고 안심 운전을 추구하는 분들에겐 매력적인 대안이 됩니다.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-button" onclick="toggleAccordion(this)">
+                            Q3. 네이버나 카카오 제휴 다이렉트 가입과 공식 대리점 가입의 혜택 차이는 무엇인가요?
+                        </button>
+                        <div class="accordion-content">
+                            공식 오프라인 설계사를 통할 경우 개별적인 맞춤 관리 지원을 얻는 장점이 있으나 중간 마진으로 인한 단점이 생깁니다. 한편 네이버나 구글 등지에서 비교 센터를 거쳐 다이렉트로 셀프 설계를 진행하면 수수료가 빠진 싼곳 기준의 최종 견적을 보게 되며 추가로 페이백 포인트 상품권 등 프로모션 사은품까지 직접 챙길 수 있는 현금지원격의 혜택을 온전히 누리게 됩니다.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="external-resources">
+                <h4>신뢰할 수 있는 외부 공식 리소스 안내</h4>
+                <div class="external-grid">
+                    <a href="https://namu.wiki/w/%EC%95%84%EC%9A%B0%EB%94%94%20A6" class="external-link" target="_blank" rel="noopener noreferrer">나무위키 - 아우디 A6 역사 및 트림 상세 소개</a>
+                    <a href="https://www.kidi.or.kr/" class="external-link" target="_blank" rel="noopener noreferrer">보험개발원 - 차량 모델별 등급 조회 및 수리 평가 정보</a>
+                    <a href="https://fine.fss.or.kr/" class="external-link" target="_blank" rel="noopener noreferrer">금융감독원 파인 - 금융소비자 정보 포털 통합 보험 가이드</a>
+                    <a href="https://www.e-insmarket.or.kr/" class="external-link" target="_blank" rel="noopener noreferrer">보험다모아 - 정부 주관 공인 다이렉트 보험 상품 단가 비교</a>
+                    <a href="https://www.kotsa.or.kr/" class="external-link" target="_blank" rel="noopener noreferrer">한국교통안전공단 - 수입 자동차 사고율 정보 및 리콜 정보</a>
+                </div>
+            </div>
+        </article>
     </main>
-  </body>
-</html>
+
+    <script>
+      // FAQ 아코디언 토글 기능
+      function toggleAccordion(button) {
+        const item = button.parentElement;
+        item.classList.toggle('active');
+        
+        // 클릭 시 인접 콘텐츠 높이에 따른 부드러운 전개 효과 지원
+        const content = button.nextElementSibling;
+        const isExpanded = item.classList.contains('active');
+        button.setAttribute('aria-expanded', isExpanded);
+      }
+
+      // 모의 간이 계산기 계산 로직
+      function calculatePremium() {
+        // 기준 단가 설정 (30대 평균적인 아우디 A6 연간 기본 보험료 단가 1,000,000원으로 가정)
+        const basePremium = 1000000;
+        
+        const modelFactor = parseFloat(document.getElementById('audi_model').value);
+        const ageFactor = parseFloat(document.getElementById('driver_age_select').value);
+        const rangeFactor = parseFloat(document.getElementById('driver_range_select').value);
+        const accidentFactor = parseFloat(document.getElementById('accident_history').value);
+        const mileageFactor = parseFloat(document.getElementById('mileage_discount').value);
+        const tmapFactor = parseFloat(document.getElementById('tmap_score').value);
+        
+        // 체크박스 기반 추가 감면 계산
+        let checkboxDiscount = 1.0;
+        if (document.getElementById('blackbox').checked) checkboxDiscount -= 0.03;
+        if (document.getElementById('adas').checked) checkboxDiscount -= 0.05;
+        if (document.getElementById('child').checked) checkboxDiscount -= 0.07;
+        if (document.getElementById('copay').checked) checkboxDiscount -= 0.04;
+        
+        // 총 누적 계산 프로세스 진행
+        let finalResult = basePremium * modelFactor * ageFactor * rangeFactor * accidentFactor * mileageFactor * tmapFactor * checkboxDiscount;
+        
+        // 최소/최대 안전장치 하한선 및 단위 절사 보정
+        if (finalResult < 450000) finalResult = 450000;
+        
+        const formattedResult = Math.round(finalResult).toLocaleString('ko-KR') + " 원";
+        
+        // 결과 표기 처리
+        const resultDiv = document.getElementById('calcResult');
+        const valueSpan = document.getElementById('calculatedValue');
+        
+        valueSpan.innerText = formattedResult;
+        resultDiv.style.display = 'block';
+        
+        // 결과 위치로 화면 부드럽게 자동 정렬 스크롤
+        resultDiv.scrollIntoView({ behavior: 'smooth' });
+      }
+    </script>
+  
